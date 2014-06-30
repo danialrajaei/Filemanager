@@ -30,8 +30,10 @@
             return;
         var items = $.parseJSON(data);
         $.each(items, function (index, value) {
-            $('.fm-files').append('<li class="fm-filenode" value="' + value.Address + '"><label class="fm-filename">' + value.Title + '</label></li>');
+            $('.fm-files').append('<li class="fm-filenode" value="' + value.Address + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/'+value.Category+'.png\'" /><label class="fm-filename">' + value.Title + '</label></li>');
         });
+        //$('.fm-filenode').sortable({ revert: true });
+        $('.fm-filenode').draggable({ revert: 'invalid', handle: 'img', zIndex: 1000 });
     }
 
     $(document).ready(function () {

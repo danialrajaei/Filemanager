@@ -29,7 +29,7 @@ namespace Filemanager.Classes
             {
                 try
                 {
-                    return Path.GetExtension(Address);
+                    return Path.GetExtension(Address).TrimStart('.');
                 }
                 catch (Exception)
                 {

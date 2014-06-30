@@ -9,6 +9,7 @@
 <head runat="server">
     <title>ASP.net Filemanager</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
     <link href="Content/Style.css" rel="stylesheet" />
     <script type="text/javascript" src="Scripts/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery-ui-1.10.4.min.js"></script>
