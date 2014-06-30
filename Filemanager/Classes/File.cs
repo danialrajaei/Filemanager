@@ -10,6 +10,8 @@ namespace Filemanager.Classes
     {
         private string _address;
 
+        public string Title { get { return Address.ToCharArray().Contains('/') ? Address.Remove(0, Address.LastIndexOf('/')) : Address; } }
+
         public FileItem(string address)
         {
             _address = address;
