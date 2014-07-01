@@ -10,11 +10,14 @@ namespace Filemanager.Classes
     {
         private string _address;
 
-        public string Title { get { return Address.ToCharArray().Contains('/') ? Address.Remove(0, Address.LastIndexOf('/')) : Address; } }
+        private FileInfo fileInfo;
+
+        public string Title { get { return Address.ToCharArray().Contains('/') ? Address.Remove(0, Address.LastIndexOf('/')).TrimStart('/') : Address; } }
 
         public FileItem(string address)
         {
             _address = address;
+            fileInfo = new FileInfo(_address);
         }
 
         public string Address
@@ -29,7 +32,8 @@ namespace Filemanager.Classes
             {
                 try
                 {
-                    return Path.GetExtension(Address).TrimStart('.');
+                    var ext = Path.GetExtension(Address);
+                    return string.IsNullOrEmpty(ext) ? "folder" : ext.TrimStart('.');
                 }
                 catch (Exception)
                 {
@@ -40,11 +44,15 @@ namespace Filemanager.Classes
 
         public string Category { get { return GetCategory(Extension); } }
 
+        public long FileSize { get { return Category.ToLower() == "folder" ? 0 : fileInfo.Length; } }
+
+        public DateTime DateCreated { get { return fileInfo.CreationTime; } }
+
         protected string GetCategory(string extension)
         {
             string[] imageTypes = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".gif" };
             string[] programTypes = { ".html", ".cs", ".js", ".css", ".aspx", ".ashx", ".config" };
-            if (Extension.Equals("folder", StringComparison.InvariantCultureIgnoreCase))
+            if (Extension.Equals("folder", StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrEmpty(Extension))
             {
                 return "Folder";
             }

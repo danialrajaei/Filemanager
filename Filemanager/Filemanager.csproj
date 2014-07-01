@@ -86,6 +86,8 @@
     <Content Include="Content\filemanager\DVF.png" />
     <Content Include="Content\filemanager\EPS.png" />
     <Content Include="Content\filemanager\EXE.png" />
+    <Content Include="Content\filemanager\folder.png" />
+    <Content Include="Content\filemanager\gif-load.gif" />
     <Content Include="Content\filemanager\GIF.png" />
     <Content Include="Content\filemanager\HTML.png" />
     <Content Include="Content\filemanager\INDD.png" />
@@ -94,6 +96,7 @@
     <Content Include="Content\filemanager\LOG.png" />
     <Content Include="Content\filemanager\MP4.png" />
     <Content Include="Content\filemanager\OGG.png" />
+    <Content Include="Content\filemanager\PNG.png" />
     <Content Include="Content\filemanager\PPT.png" />
     <Content Include="Content\filemanager\PS.png" />
     <Content Include="Content\filemanager\PSD.png" />
@@ -106,6 +109,7 @@
     <Content Include="Content\filemanager\TIFF.png" />
     <Content Include="Content\filemanager\TOR.png" />
     <Content Include="Content\filemanager\TXT.png" />
+    <Content Include="Content\filemanager\UNKNOWN.png" />
     <Content Include="Content\filemanager\VCD.png" />
     <Content Include="Content\filemanager\WPD.png" />
     <Content Include="Content\filemanager\XTM.png" />

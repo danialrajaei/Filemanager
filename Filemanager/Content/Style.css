@@ -1,10 +1,12 @@
 ﻿/*-------------------Filemanager-------------------*/
 .fm-table { border: 1px solid black; }
-.fm-left { border-right: 1px solid black; padding: 0px; vertical-align: top; overflow-x: auto;  }
-.fm-right { border-left: 1px solid black; padding: 10px; overflow-x: auto; vertical-align: top;  }
+.fm-left { border-right: 1px solid black; padding: 0px; vertical-align: top; overflow-x: auto; }
+.fm-right { border-left: 1px solid black; padding: 10px; overflow-x: auto; vertical-align: top; }
 .fm-tree-directory { max-height: 400px; overflow-y: auto; list-style: none; padding: 0; margin: 0; vertical-align: top; width: 100%; }
     .fm-tree-directory li { width: 100%; cursor: pointer; }
 .fm-dirname { cursor: pointer; width: 80%; }
-.fm-files { max-height: 400px; overflow-y: auto; list-style: none;height:400px;}
-.fm-filenode { margin: 5px; max-width: 75px; float: left;  }
-.fm-filename { overflow-wrap: break-word; white-space: pre-wrap; font-size: smaller; }
+.fm-files { max-height: 400px; overflow-y: auto; list-style: none; height: 400px; }
+.fm-filenode { margin: 5px; max-width: 75px; float: left; text-align: center; padding-top: 10px; }
+.fm-filename { font-size: smaller; text-overflow:ellipsis; overflow:hidden; }
+.fm-selected { background-color: lightskyblue; font-style: oblique; overflow-wrap: break-word; padding: 5px; }
+.fm-mask { background: url(/Content/filemanager/gif-load.gif) grey no-repeat center center; text-align: center; vertical-align: middle; position: absolute; z-index: 100; margin: 0; padding: 0; opacity: 0.6; }
