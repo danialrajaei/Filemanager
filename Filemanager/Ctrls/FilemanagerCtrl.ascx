@@ -26,7 +26,7 @@
     </tr>
 </table>
 <script type="text/javascript">
-    var currentFiles;
+    var currentFiles =[];
     var isLockOnFile = false;
     function ExtendTree(node, data) {
         $(node).children('ul').remove();
@@ -50,7 +50,7 @@
         if (data == "")
             return;
         var items = $.parseJSON(data);
-        currentFiles.concat(items);
+        currentFiles = currentFiles.concat(items);
         $.each(items, function (index, value) {
             $('.fm-files').append('<li class="fm-filenode" data-value="' + value.Address + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/UNKNOWN.png\'" width="56" /><p class="fm-filename">' + value.Title + '</p></li>');
         });
