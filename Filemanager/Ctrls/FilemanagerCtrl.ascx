@@ -1,6 +1,35 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FilemanagerCtrl.ascx.cs" Inherits="Filemanager.Ctrls.FilemanagerCtrl" %>
 <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fm-table">
     <tr>
+        <td class="fm-menu" colspan="2">
+            <table style="margin: auto;">
+                <tr>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" title="Upload file" data-placement="bottom">
+                                <span class="glyphicon glyphicon-upload"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" title="Add new folder" data-placement="bottom">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" title="Add new file" data-placement="bottom">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" title="open in new tab" data-placement="bottom">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" title="download" data-placement="bottom">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td class="col-xs-12 col-sm-12 col-md-3 col-lg-3 fm-left">
             <ul class="fm-tree-directory">
                 <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree">-</span><label class="fm-dirname">Root</label></li>
@@ -25,8 +54,88 @@
         </td>
     </tr>
 </table>
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            </form>
+            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">File Upload</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="opName" value="uplaodFile" />
+                    <input type="hidden" name="dir" value="/" />
+                    <p>
+                        <input type="file" name="fileUpload" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="submit" />
+                </div>
+            </form>
+            <form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="newFolderModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            </form>
+            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Add New Folder</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="opName" value="addFolder" />
+                    <input type="hidden" name="dir" value="/" />
+                    <p>Please enter a name for folder</p>
+                    <p>
+                        <input type="text" name="folderName" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="submit" />
+                </div>
+            </form>
+            <form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="newFileModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            </form>
+            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Add New File</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="opName" value="addFile" />
+                    <input type="hidden" name="dir" value="/" />
+                    <p>Please enter a name for file (default extension is txt)</p>
+                    <p>
+                        <input type="text" name="fileName" />
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="submit" />
+                </div>
+            </form>
+            <form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <script type="text/javascript">
-    var currentFiles =[];
+    var currentFiles = [];
     var isLockOnFile = false;
     function ExtendTree(node, data) {
         $(node).children('ul').remove();
@@ -42,8 +151,7 @@
     }
 
     function ShowFiles(data, clearData) {
-        if (clearData == undefined || clearData)
-        {
+        if (clearData == undefined || clearData) {
             $('.fm-files').children().remove();
             currentFiles = [];
         }
@@ -63,36 +171,21 @@
             $('[class^=fm-attr-]').text('');
     }
 
-    function maskLoad(selector)
-    {
+    function maskLoad(selector) {
         var offset = $(selector).offset();
-        var mask = $('<div class="fm-mask" data-elem="'+selector+'"></div>');
+        var mask = $('<div class="fm-mask" data-elem="' + selector + '"></div>');
         mask.offset({ top: offset.top, left: offset.left });
         mask.width($(selector).width());
         mask.height($(selector).height());
         $(document.body).prepend(mask);
     }
 
-    function unmask(selector)
-    {
+    function unmask(selector) {
         $('[data-elem="' + selector + '"]').remove();
     }
 
     $(document).ready(function () {
-        $.ajax({
-            url: '/FilemanagerHandler.ashx',
-            data: 'opName=getDirs&dir=<%= this.RootPath %>',
-            success: function (data, textStatus, jqXHR) {
-                ExtendTree($('.fm-tree-directory li:first'), data);
-            },
-        });
-        $.ajax({
-            url: '/FilemanagerHandler.ashx',
-            data: 'opName=getFiles&dir=<%= this.RootPath %>',
-            success: function (data, textStatus, jqXHR) {
-                ShowFiles(data);
-            },
-        });
+        loadData($('.fm-tree-directory li:first'));
         $('.fm-tree-directory').on('click', '.fm-dirname', function () {
             clearAttributes();
             var selectedItem = $(this).parent('li');
@@ -100,30 +193,34 @@
                 return;
             var folders;
             maskLoad('.fm-right');
+            loadData(selectedItem);
+        });
+
+        function loadData(elem)
+        {
             $.ajax({
                 url: '/FilemanagerHandler.ashx',
-                data: 'opName=getDirs&dir=/' + selectedItem.attr('data-value'),
+                data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
                 success: function (data, textStatus, jqXHR) {
                     folders = data;
-                    ExtendTree(selectedItem, data);
+                    ExtendTree(elem, data);
                 },
                 complete: function () {
                     $.ajax({
                         url: '/FilemanagerHandler.ashx',
-                        data: 'opName=getFiles&dir=/' + selectedItem.attr('data-value'),
+                        data: 'opName=getFiles&dir=/' + elem.attr('data-value'),
                         success: function (data, textStatus, jqXHR) {
                             ShowFiles(folders);
                             ShowFiles(data, false);
                             //ShowFiles(data);
                         },
-                        complete:function()
-                        {
+                        complete: function () {
                             unmask('.fm-right');
                         }
                     });
                 }
             });
-        });
+        }
 
         $('.fm-tree-directory').on('click', '.fm-toggle-subtree', function () {
             clearAttributes();
@@ -132,6 +229,8 @@
             }
             else { $(this).parent('li').children('.fm-subtree').slideToggle(); }
         });
+
+        $('button').tooltip();
     });
 
 
@@ -167,5 +266,23 @@
                 break;
         }
         return false;
+    });
+
+    $('#fm-btn-upload').click(function () {
+        $('#uploadModal').modal('show');
+    });
+    $('#fm-btn-newfolder').click(function () {
+        $('#newFolderModal').modal('show');
+    });
+    $('#fm-btn-newfile').click(function () {
+        $('#newFileModal').modal('show');
+    });
+
+    $('#fm-btn-openFile').click(function () {
+        window.open($('.fm-selected').attr('data-value'));
+    });
+
+    $('#fm-btn-download').click(function () {
+        window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-selected').attr('data-value'));
     });
 </script>
