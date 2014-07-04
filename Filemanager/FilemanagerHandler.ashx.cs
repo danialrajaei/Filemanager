@@ -20,6 +20,7 @@ namespace Filemanager
             {
                 var opName = context.Request.Params["opName"];
                 List<FileItem> retList = new List<FileItem>();
+                short i;
                 switch (opName)
                 {
                     case "getDirs":
@@ -43,7 +44,7 @@ namespace Filemanager
                         {
                             string fileName = Path.GetFileName(file.FileName);
                             string address = context.Server.MapPath(Path.Combine(dir, fileName));
-                            short i = 1;
+                            i = 1;
                             while (File.Exists(address))
                             {
                                 address = context.Server.MapPath(Path.Combine(dir, Path.GetFileNameWithoutExtension(fileName) + " (" + i + ")" + Path.GetExtension(fileName)));
@@ -69,6 +70,66 @@ namespace Filemanager
                         context.Response.WriteFile(filename);
                         context.Response.Headers.Add("Content-Disposition", "attachment;filename=" + Path.GetFileName(filename));
                         return;
+                        break;
+                    case "copy":
+                        var dir1 = context.Request.Params["dir1"];
+                        var dir2 = context.Request.Params["dir2"];
+                        var addressTocopy = context.Server.MapPath(Path.Combine(dir1, Path.GetFileName(dir2)));
+                        i = 1;
+                            while (File.Exists(addressTocopy))
+                            {
+                                addressTocopy =
+                                    context.Server.MapPath(Path.Combine(dir1,
+                                                                        Path.GetFileNameWithoutExtension(dir2) + " (" +
+                                                                        i + ")" + Path.GetExtension(dir2)));
+                            }
+                        File.Copy(context.Server.MapPath(dir2), addressTocopy);
+                        break;
+                    case "cut":
+                        dir1 = context.Request.Params["dir1"];
+                        dir2 = context.Request.Params["dir2"];
+                        addressTocopy = context.Server.MapPath(Path.Combine(dir1, Path.GetFileName(dir2)));
+                        i = 1;
+                            while (File.Exists(addressTocopy))
+                            {
+                                addressTocopy =
+                                    context.Server.MapPath(Path.Combine(dir1,
+                                                                        Path.GetFileNameWithoutExtension(dir2) + " (" +
+                                                                        i + ")" + Path.GetExtension(dir2)));
+                            }
+                        File.Move(context.Server.MapPath(dir2), addressTocopy);
+                        break;
+                    case "delete":
+                        dir = context.Request.Params["dir"];
+                        string deleteAdd = context.Server.MapPath(dir);
+                        if (File.Exists(deleteAdd))
+                        {
+                            File.Delete(deleteAdd);
+                        }
+                        else
+                        {
+                            if (Directory.Exists(deleteAdd))
+                                Directory.Delete(deleteAdd);
+                        }
+                        break;
+                    case "rename":
+                        dir = context.Server.MapPath(context.Request.Params["dir"]);
+                        var rename = context.Request.Params["name"];
+                        if (File.Exists(dir))
+                        {
+                            var renameAdd = string.IsNullOrEmpty(Path.GetExtension(rename))
+                                                ? Path.Combine(Path.GetDirectoryName(dir),
+                                                               rename + Path.GetExtension(dir))
+                                                : Path.Combine(Path.GetDirectoryName(dir), rename);
+                            File.Move(dir, renameAdd);
+                            retList.Add(new FileItem(renameAdd));
+                        }
+                        else if (Directory.Exists(dir))
+                        {
+                            var renameAdd = Path.Combine(dir.Remove(dir.LastIndexOf('\\') + 1), rename);
+                            Directory.Move(dir, renameAdd);
+                            retList.Add(new FileItem(renameAdd));
+                        }
                         break;
                     default:
                         break;

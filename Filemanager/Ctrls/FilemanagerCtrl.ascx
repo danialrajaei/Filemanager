@@ -18,10 +18,28 @@
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" title="open in new tab" data-placement="bottom">
-                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="glyphicon glyphicon-new-window"></span>
                             </button>
                             <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" title="download" data-placement="bottom">
-                                <span class="glyphicon glyphicon-file"></span>
+                                <span class="glyphicon glyphicon-download"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" title="copy" data-placement="bottom" value="Copy">
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" title="cut" data-placement="bottom" value="Cut">
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" title="paste" data-placement="bottom" value="Paste">
+                            </button>
+                            <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" title="duplicate" data-placement="bottom" value="duplicate">
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" title="delete" data-placement="bottom" value="Delete">
+                            </button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" title="rename" data-placement="bottom" value="Rename">
                             </button>
                         </div>
                     </td>
@@ -58,7 +76,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">File Upload</h4>
@@ -84,7 +102,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Add New Folder</h4>
@@ -111,7 +129,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST"  enctype="multipart/form-data">
+            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Add New File</h4>
@@ -135,8 +153,9 @@
     <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
-    var currentFiles = [];
-    var isLockOnFile = false;
+
+    var copies, cuts, paste;
+
     function ExtendTree(node, data) {
         $(node).children('ul').remove();
         if (data == "")
@@ -153,22 +172,18 @@
     function ShowFiles(data, clearData) {
         if (clearData == undefined || clearData) {
             $('.fm-files').children().remove();
-            currentFiles = [];
         }
         if (data == "")
             return;
         var items = $.parseJSON(data);
-        currentFiles = currentFiles.concat(items);
         $.each(items, function (index, value) {
-            $('.fm-files').append('<li class="fm-filenode" data-value="' + value.Address + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/UNKNOWN.png\'" width="56" /><p class="fm-filename">' + value.Title + '</p></li>');
+            $('.fm-files').append('<li class="fm-filenode" data-value="' + value.Address + '" data-size="' + value.FileSize + '" data-date="' + value.DateCreated + '" data-ext="' + value.Extension + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/UNKNOWN.png\'" width="56" /><p class="fm-filename">' + value.Title + '</p></li>');
         });
-        //$('.fm-filenode').sortable({ revert: true });
         $('.fm-filenode').draggable({ revert: 'invalid', handle: 'img', zIndex: 1000 });
     }
 
     function clearAttributes() {
-        if (!isLockOnFile)
-            $('[class^=fm-attr-]').text('');
+        $('[class^=fm-attr-]').text('');
     }
 
     function maskLoad(selector) {
@@ -196,14 +211,16 @@
             loadData(selectedItem);
         });
 
-        function loadData(elem)
-        {
+        function loadData(elem) {
+            var folders;
             $.ajax({
                 url: '/FilemanagerHandler.ashx',
                 data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
                 success: function (data, textStatus, jqXHR) {
                     folders = data;
                     ExtendTree(elem, data);
+                    $('.fm-tree-selected').removeClass('fm-tree-selected');
+                    $(elem).toggleClass('fm-tree-selected');
                 },
                 complete: function () {
                     $.ajax({
@@ -220,6 +237,7 @@
                     });
                 }
             });
+            paste = '/' + elem.attr('data-value');
         }
 
         $('.fm-tree-directory').on('click', '.fm-toggle-subtree', function () {
@@ -233,8 +251,6 @@
         $('button').tooltip();
     });
 
-
-
     function getFileSize(fileSize) {
         if (fileSize < 1024)
             return fileSize + "B";
@@ -247,13 +263,12 @@
     function SelectFile(obj) {
         $('.fm-selected').removeClass('fm-selected');
         $(obj).toggleClass('fm-selected');
-        var sItem = $.grep(currentFiles, function (a) {
-            return a.Address == $(obj).attr('data-value');
-        })[0];
-        $('.fm-attr-address').text(sItem.Address);
-        $('.fm-attr-size').text(getFileSize(sItem.FileSize));
-        var createdDateObj = new Date(sItem.DateCreated);
+        $('.fm-attr-address').text($(obj).attr('data-value'));
+        $('.fm-attr-size').text(getFileSize($(obj).attr('data-size')));
+        var createdDateObj = new Date($(obj).attr('data-date'));
         $('.fm-attr-creationDate').text(createdDateObj.toLocaleDateString() + " " + createdDateObj.toLocaleTimeString());
+        if ($(obj).attr('data-ext').toLowerCase() == 'folder')
+            paste = $(obj).attr('data-value');
     }
 
     $('.fm-files').on('mousedown', '.fm-filenode', function (event) {
@@ -265,15 +280,16 @@
                 //show context menu
                 break;
         }
-        return false;
     });
 
     $('#fm-btn-upload').click(function () {
         $('#uploadModal').modal('show');
     });
+
     $('#fm-btn-newfolder').click(function () {
         $('#newFolderModal').modal('show');
     });
+
     $('#fm-btn-newfile').click(function () {
         $('#newFileModal').modal('show');
     });
@@ -285,4 +301,76 @@
     $('#fm-btn-download').click(function () {
         window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-selected').attr('data-value'));
     });
+
+    $('#fm-btn-copy').click(function () {
+        copy($('.fm-selected'));
+    });
+
+    $('#fm-btn-cut').click(function () {
+        cut($('.fm-selected'));
+    });
+
+    $('#fm-btn-paste').click(function () {
+        copies.each(function () {
+            $.ajax({
+                url: '/FilemanagerHandler.ashx',
+                data: 'opName=copy&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+            });
+        });
+
+        cuts.each(function () {
+            $.ajax({
+                url: '/FilemanagerHandler.ashx',
+                data: 'opName=cut&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+            });
+        });
+    });
+
+    $('#fm-btn-delete').click(function () {
+        $.ajax({
+            url: '/FilemanagerHandler.ashx',
+            data: 'opName=delete&dir=' + $('.fm-selected').attr('data-value'),
+        });
+    });
+
+    $('#fm-btn-rename').click(function () {
+        var obj = $('.fm-selected').append('<textarea class="fm-txt-rename form-control" type="text" onBlur="renameOnBlur(this)" >' + $('.fm-selected>.fm-filename').text() + '</textarea>');
+        $('.fm-selected>.fm-filename').hide();
+        $(obj).focus();
+    });
+
+    function renameOnBlur(obj) {
+        var rename = $(obj).val();
+        $(obj).hide();
+        $.ajax({
+            url: '/FilemanagerHandler.ashx',
+            data: 'opName=rename&dir=' + $(obj).parent('.fm-filenode').attr('data-value') + '&name=' + rename,
+            success: function (data) {
+                var item = $.parseJSON(data)[0];
+                $(obj).prev('p').text(item.Title).show().parent('.fm-filenode').attr('data-value', item.Address).attr('data-ext', item.Extension).attr('data-date', item.CreatedDate);
+                $(obj).remove();
+            }
+        });
+    }
+
+    $('#fm-btn-duplicate').click(function () {
+        $.ajax({
+            url: '/FilemanagerHandler.ashx',
+            data: 'opName=copy&dir1=' + $('.fm-tree-selected').attr('data-value') + '&dir2=' + $('.fm-selected').attr('data-value'),
+        });
+    });
+
+    function copy(obj) {
+        $('.fm-copy').removeClass('fm-copy');
+        $('.fm-cut').removeClass('fm-cut');
+        $(obj).addClass('fm-copy');
+        copies = $(obj);
+    }
+
+    function cut(obj) {
+        $('.fm-copy').removeClass('fm-copy');
+        $('.fm-cut').removeClass('fm-cut');
+        $(obj).addClass('fm-cut');
+        cuts = $(obj);
+    }
 </script>
