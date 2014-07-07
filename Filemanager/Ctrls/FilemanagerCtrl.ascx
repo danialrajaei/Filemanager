@@ -289,6 +289,19 @@
         }
     });
 
+    function getUrlParam(paramName) {
+        var reParam = new RegExp('(?:[\?&]|&)' + paramName + '=([^&]+)', 'i');
+        var match = window.location.search.match(reParam);
+
+        return (match && match.length > 1) ? match[1] : null;
+    }
+
+    $('.fm-files').on('dblclick', '.fm-filenode', function (event) {
+        var funcNum = getUrlParam('CKEditorFuncNum');
+        window.opener.CKEDITOR.tools.callFunction(funcNum, $(this).attr('data-value'));
+        window.close();
+    });
+
     $('#fm-btn-upload').click(function () {
         $('#uploadModal').modal('show');
     });

@@ -1,0 +1,13 @@
+.icon{ background:url("icon.png") top left no-repeat; }
+.icon-duplicate{ width:21px; height:24px; background-position:-4px -4px; }
+.icon-rename{ width:18px; height:24px; background-position:-29px -4px; }
+.icon-view{ width:24px; height:24px; background-position:-51px -4px; }
+.icon-addfolder{ width:24px; height:24px; background-position:-79px -4px; }
+.icon-copy{ width:24px; height:24px; background-position:-107px -4px; }
+.icon-cut{ width:24px; height:24px; background-position:-135px -4px; }
+.icon-download{ width:24px; height:24px; background-position:-163px -4px; }
+.icon-addfile{ width:19px; height:24px; background-position:-191px -4px; }
+.icon-delete{ width:24px; height:24px; background-position:-214px -4px; }
+.icon-paste{ width:25px; height:24px; background-position:-242px -4px; }
+.icon-upload{ width:23px; height:24px; background-position:-271px -4px; }
+
