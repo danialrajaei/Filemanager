@@ -96,6 +96,7 @@
     <Content Include="Content\filemanager\INDD.png" />
     <Content Include="Content\filemanager\JPEG.png" />
     <Content Include="Content\filemanager\JPG.png" />
+    <Content Include="Content\filemanager\Lang\En.js" />
     <Content Include="Content\filemanager\LOG.png" />
     <Content Include="Content\filemanager\MP4.png" />
     <Content Include="Content\filemanager\OGG.png" />

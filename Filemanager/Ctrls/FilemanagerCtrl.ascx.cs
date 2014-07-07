@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace Filemanager.Ctrls
 {
@@ -18,13 +19,24 @@ namespace Filemanager.Ctrls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-
+            if (!string.IsNullOrEmpty(Request.QueryString["langCode"]))
+            {
+                var langCode = Request.QueryString["langCode"];
+                if (File.Exists(Server.MapPath(Path.Combine("/Content/filemanager/Lang/", langCode + ".js"))) && Page.ClientScript.IsClientScriptIncludeRegistered(langCode))
+                {
+                    Page.ClientScript.RegisterClientScriptInclude(langCode, Path.Combine("/Content/filemanager/Lang/", langCode + ".js"));
+                }
+                else
+                    Page.ClientScript.RegisterClientScriptInclude("En", "/Content/filemanager/Lang/En.js");
+            }
+            else
+                    Page.ClientScript.RegisterClientScriptInclude("En", "/Content/filemanager/Lang/En.js");
         }
     }
 }
