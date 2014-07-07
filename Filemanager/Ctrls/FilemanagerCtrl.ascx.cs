@@ -28,7 +28,7 @@ namespace Filemanager.Ctrls
             if (!string.IsNullOrEmpty(Request.QueryString["langCode"]))
             {
                 var langCode = Request.QueryString["langCode"];
-                if (File.Exists(Server.MapPath(Path.Combine("/Content/filemanager/Lang/", langCode + ".js"))) && Page.ClientScript.IsClientScriptIncludeRegistered(langCode))
+                if (File.Exists(Server.MapPath(Path.Combine("/Content/filemanager/Lang/", langCode + ".js"))))
                 {
                     Page.ClientScript.RegisterClientScriptInclude(langCode, Path.Combine("/Content/filemanager/Lang/", langCode + ".js"));
                 }

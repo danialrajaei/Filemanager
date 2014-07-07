@@ -3,9 +3,9 @@
 .fm-left { border: 1px solid gray; padding: 0px; vertical-align: top; overflow-x: auto; }
 .fm-right { border: 1px solid gray; padding: 10px; overflow-x: auto; vertical-align: top; }
 .fm-tree-directory { max-height: 400px; overflow-y: auto; list-style: none; padding: 0; margin: 0; vertical-align: top; width: 100%; }
-    .fm-tree-directory li { width: 100%; cursor: pointer; }
-.fm-subtree li { list-style:none; min-height:24px; }
-.fm-dirname { cursor: pointer; width: 80%; padding:2px 0 0 5px; }
+.fm-tree-directory li { width: 100%; cursor: pointer; }
+.fm-subtree li { list-style: none; min-height: 24px; }
+.fm-dirname { cursor: pointer; width: 80%; padding: 2px 0 0 5px; }
 .fm-files { max-height: 400px; overflow-y: auto; list-style: none; height: 400px; }
 .fm-filenode { margin: 5px; max-width: 75px; float: left; text-align: center; padding-top: 10px; }
 .fm-filename { font-size: smaller; text-overflow: ellipsis; overflow: hidden; }
@@ -13,4 +13,6 @@
 .fm-mask { background: url(/Content/filemanager/gif-load.gif) grey no-repeat center center; text-align: center; vertical-align: middle; position: absolute; z-index: 100; margin: 0; padding: 0; opacity: 0.6; }
 .fm-topmenu { background: -webkit-linear-gradient(gray, white); background: -o-linear-gradient(gray, white); background: -moz-linear-gradient(gray, white); background: linear-gradient(gray, white); }
 .fm-statusbar { background: -webkit-linear-gradient(gray, white); background: -o-linear-gradient(gray, white); background: -moz-linear-gradient(gray, white); background: linear-gradient(gray, white); }
-.fm-icon-minifolder { background:url(/Content/filemanager/mini-folder.png) no-repeat; width:24px; height:24px; }
+.fm-icon-minifolder { background: url(/Content/filemanager/mini-folder.png) no-repeat; width: 24px; height: 24px; }
+.fm-dirnode:hover { background-color: lightskyblue; }
+.fm-tree-selected { background-color: lightslategray; }

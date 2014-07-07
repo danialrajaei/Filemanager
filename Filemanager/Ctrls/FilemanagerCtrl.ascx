@@ -7,45 +7,45 @@
                 <tr>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" data-translate-title="toolbar.uploadTitle" data-placement="bottom">
+                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" data-translate-title="uploadTitle" data-placement="bottom">
                                 <div class="icon icon-upload"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" data-translate-title="toolbar.addFolderTitle" data-placement="bottom">
+                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" data-translate-title="addFolderTitle" data-placement="bottom">
                                 <div class="icon icon-addfolder"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" data-translate-title="toolbar.addFileTitle" data-placement="bottom">
+                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" data-translate-title="addFileTitle" data-placement="bottom">
                                 <div class="icon icon-addfile"></div>
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" data-translate-title="toolbar.viewTitle" data-placement="bottom">
+                            <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" data-translate-title="viewTitle" data-placement="bottom">
                                 <div class="icon icon-view"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" data-translate-title="toolbar.downloadTitle" data-placement="bottom">
+                            <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" data-translate-title="downloadTitle" data-placement="bottom">
                                 <div class="icon icon-download"></div>
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" data-translate-title="toolbar.copyTitle" data-placement="bottom" value="Copy">
+                            <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" data-translate-title="copyTitle" data-placement="bottom" value="Copy">
                                 <div class="icon icon-copy"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" data-translate-title="toolbar.cutTitle" data-placement="bottom" value="Cut">
+                            <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" data-translate-title="cutTitle" data-placement="bottom" value="Cut">
                                 <div class="icon icon-cut"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" data-translate-title="toolbar.pasteTitle" data-placement="bottom" value="Paste">
+                            <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" data-translate-title="pasteTitle" data-placement="bottom" value="Paste">
                                 <div class="icon icon-paste"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" data-translate-title="toolbar.duplicateTitle" data-placement="bottom" value="duplicate">
+                            <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" data-translate-title="duplicateTitle" data-placement="bottom" value="duplicate">
                                 <div class="icon icon-duplicate"></div>
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" data-translate-title="toolbar.deleteTitle" data-placement="bottom" value="Delete">
+                            <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" data-translate-title="deleteTitle" data-placement="bottom" value="Delete">
                                 <div class="icon icon-delete"></div>
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" data-translate-title="toolbar.renameTitle" data-placement="bottom" value="Rename">
+                            <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" data-translate-title="renameTitle" data-placement="bottom" value="Rename">
                                 <div class="icon icon-rename"></div>
                             </button>
                         </div>
@@ -57,7 +57,7 @@
     <tr>
         <td class="col-xs-12 col-sm-12 col-md-3 col-lg-3 fm-left">
             <ul class="fm-tree-directory">
-                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree">-</span><label class="fm-dirname" data-translate-text="Root"></label></li>
+                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree">-</span><label class="fm-dirname" data-translate-text="root"></label></li>
             </ul>
         </td>
         <td class="col-xs-12 col-sm-12 col-md-9 col-lg-9 fm-right">
@@ -68,11 +68,11 @@
         <td class="fm-attributes" colspan="2">
             <table>
                 <tr>
-                    <td data-translate-text="statusbar.fullAddress"></td>
+                    <td data-translate-text="fullAddress"></td>
                     <td>"<span class="fm-attr-address"></span>"</td>
-                    <td style="padding-left: 20px;" data-translate-text="statusbar.size"></td>
+                    <td style="padding-left: 20px;" data-translate-text="size"></td>
                     <td>"<span class="fm-attr-size"></span>"</td>
-                    <td style="padding-left: 20px;" data-translate-text="statusbar.creationDateTime"></td>
+                    <td style="padding-left: 20px;" data-translate-text="creationDateTime"></td>
                     <td>"<span class="fm-attr-creationDate"></span>"</td>
                 </tr>
             </table>
@@ -85,8 +85,8 @@
             </form>
             <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">File Upload</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
+                    <h4 class="modal-title" data-translate-text="uploadFile"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="uplaodFile" />
@@ -96,7 +96,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="submit" />
+                    <input type="submit" data-translate-value="submit" />
                 </div>
             </form>
             <form>
@@ -111,19 +111,19 @@
             </form>
             <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Add New Folder</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
+                    <h4 class="modal-title" data-translate-text="addNewFolder"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="addFolder" />
                     <input type="hidden" name="dir" value="/" />
-                    <p>Please enter a name for folder</p>
+                    <p data-translate-text="promptFolderName"></p>
                     <p>
-                        <input type="text" name="folderName" />
+                        <input type="text" name="folderName" class="form-control" />
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="submit" />
+                    <input type="submit" data-translate-value="submit" />
                 </div>
             </form>
             <form>
@@ -138,19 +138,19 @@
             </form>
             <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Add New File</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
+                    <h4 class="modal-title" data-translate-text="addNewFile"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="addFile" />
                     <input type="hidden" name="dir" value="/" />
-                    <p>Please enter a name for file (default extension is txt)</p>
+                    <p data-translate-text="promptFileName"></p>
                     <p>
-                        <input type="text" name="fileName" />
+                        <input type="text" name="fileName" class="form-control" />
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="submit" />
+                    <input type="submit" data-translate-value="submit" />
                 </div>
             </form>
             <form>
@@ -254,10 +254,11 @@
             }
             else { $(this).parent('li').children('.fm-subtree').slideToggle(); }
         });
-
+        $('[data-translate-title]').each(function (index, value) { $(value).attr('title', (Lang[$(value).attr('data-translate-title')])); });
+        $('[data-translate-text]').each(function (index, value) { $(value).text(Lang[$(value).attr('data-translate-text')]); });
+        $('[data-translate-value]').each(function (index, value) { $(value).val(Lang[$(value).attr('data-translate-value')]); });
+        
         $('button').tooltip();
-
-        $('[data-translate-title]').each(function (index, value) { console.log(Lang[$(value).attr('data-translate-title')]); });
     });
 
     function getFileSize(fileSize) {
