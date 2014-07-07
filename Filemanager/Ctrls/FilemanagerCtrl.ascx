@@ -1,45 +1,52 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FilemanagerCtrl.ascx.cs" Inherits="Filemanager.Ctrls.FilemanagerCtrl" %>
+<link href="../Content/filemanager/icon.css" rel="stylesheet" />
 <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fm-table">
-    <tr>
+    <tr class="fm-topmenu">
         <td class="fm-menu" colspan="2">
             <table style="margin: auto;">
                 <tr>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" title="Upload file" data-placement="bottom">
-                                <span class="glyphicon glyphicon-upload"></span>
+                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" title="upload file" data-placement="bottom">
+                                <div class="icon icon-upload"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" title="Add new folder" data-placement="bottom">
-                                <span class="glyphicon glyphicon-folder-open"></span>
+                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" title="add new folder" data-placement="bottom">
+                                <div class="icon icon-addfolder"></div>
                             </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" title="Add new file" data-placement="bottom">
-                                <span class="glyphicon glyphicon-file"></span>
+                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" title="add new file" data-placement="bottom">
+                                <div class="icon icon-addfile"></div>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" title="open in new tab" data-placement="bottom">
-                                <span class="glyphicon glyphicon-new-window"></span>
+                                <div class="icon icon-view"></div>
                             </button>
                             <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" title="download" data-placement="bottom">
-                                <span class="glyphicon glyphicon-download"></span>
+                                <div class="icon icon-download"></div>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" title="copy" data-placement="bottom" value="Copy">
+                                <div class="icon icon-copy"></div>
                             </button>
                             <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" title="cut" data-placement="bottom" value="Cut">
+                                <div class="icon icon-cut"></div>
                             </button>
                             <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" title="paste" data-placement="bottom" value="Paste">
+                                <div class="icon icon-paste"></div>
                             </button>
                             <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" title="duplicate" data-placement="bottom" value="duplicate">
+                                <div class="icon icon-duplicate"></div>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" title="delete" data-placement="bottom" value="Delete">
+                                <div class="icon icon-delete"></div>
                             </button>
                         </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" title="rename" data-placement="bottom" value="Rename">
+                                <div class="icon icon-rename"></div>
                             </button>
                         </div>
                     </td>
@@ -57,7 +64,7 @@
             <ul class="fm-files"></ul>
         </td>
     </tr>
-    <tr>
+    <tr class="fm-statusbar">
         <td class="fm-attributes" colspan="2">
             <table>
                 <tr>
@@ -165,7 +172,7 @@
         var subTree = $('<ul class="fm-subtree"></ul>');
         $(node).append(subTree);
         $.each(items, function (index, value) {
-            $(subTree).append('<li class="fm-dirnode" data-value="' + value.Address + '"><span class="fm-toggle-subtree">-</span><label class="fm-dirname">' + value.Title + '</label></li>');
+            $(subTree).append('<li class="fm-dirnode" data-value="' + value.Address + '"><div class="fm-toggle-subtree fm-icon-minifolder pull-left"></div><label class="fm-dirname">' + value.Title + '</label></li>');
         });
     }
 
@@ -336,7 +343,8 @@
     $('#fm-btn-rename').click(function () {
         var obj = $('.fm-selected').append('<textarea class="fm-txt-rename form-control" type="text" onBlur="renameOnBlur(this)" >' + $('.fm-selected>.fm-filename').text() + '</textarea>');
         $('.fm-selected>.fm-filename').hide();
-        $(obj).focus();
+        $('.fm-selected>textarea').focus();
+        $('.fm-selected>textarea').select();
     });
 
     function renameOnBlur(obj) {
