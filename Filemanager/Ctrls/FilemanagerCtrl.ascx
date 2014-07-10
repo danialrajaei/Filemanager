@@ -3,64 +3,62 @@
 <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fm-table">
     <tr class="fm-topmenu">
         <td class="fm-menu" colspan="2">
-            <table style="margin: auto;">
-                <tr>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" data-translate-title="uploadTitle" data-placement="bottom">
-                                <div class="icon icon-upload"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" data-translate-title="addFolderTitle" data-placement="bottom">
-                                <div class="icon icon-addfolder"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" data-translate-title="addFileTitle" data-placement="bottom">
-                                <div class="icon icon-addfile"></div>
-                            </button>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" data-translate-title="viewTitle" data-placement="bottom">
-                                <div class="icon icon-view"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" data-translate-title="downloadTitle" data-placement="bottom">
-                                <div class="icon icon-download"></div>
-                            </button>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" data-translate-title="copyTitle" data-placement="bottom" value="Copy">
-                                <div class="icon icon-copy"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" data-translate-title="cutTitle" data-placement="bottom" value="Cut">
-                                <div class="icon icon-cut"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" data-translate-title="pasteTitle" data-placement="bottom" value="Paste">
-                                <div class="icon icon-paste"></div>
-                            </button>
-                            <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" data-translate-title="duplicateTitle" data-placement="bottom" value="duplicate">
-                                <div class="icon icon-duplicate"></div>
-                            </button>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" data-translate-title="deleteTitle" data-placement="bottom" value="Delete">
-                                <div class="icon icon-delete"></div>
-                            </button>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" data-translate-title="renameTitle" data-placement="bottom" value="Rename">
-                                <div class="icon icon-rename"></div>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-3 col-lg-offset-3">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" data-translate-title="uploadTitle" data-placement="bottom">
+                            <div class="icon icon-upload"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-newfolder" data-toggle="tooltip" data-translate-title="addFolderTitle" data-placement="bottom">
+                            <div class="icon icon-addFolder"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-newfile" data-toggle="tooltip" data-translate-title="addFileTitle" data-placement="bottom">
+                            <div class="icon icon-addFile"></div>
+                        </button>
+                    </div>
+                    <div class="btn-group fm-btngroup-open">
+                        <button type="button" class="btn btn-default" id="fm-btn-openFile" data-toggle="tooltip" data-translate-title="viewTitle" data-placement="bottom">
+                            <div class="icon icon-view"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-download" data-toggle="tooltip" data-translate-title="downloadTitle" data-placement="bottom">
+                            <div class="icon icon-download"></div>
+                        </button>
+                    </div>
+                    <div class="btn-group fm-btngroup-edit">
+                        <button type="button" class="btn btn-default" id="fm-btn-copy" data-toggle="tooltip" data-translate-title="copyTitle" data-placement="bottom" value="Copy">
+                            <div class="icon icon-copy"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-cut" data-toggle="tooltip" data-translate-title="cutTitle" data-placement="bottom" value="Cut">
+                            <div class="icon icon-cut"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-paste" data-toggle="tooltip" data-translate-title="pasteTitle" data-placement="bottom" value="Paste">
+                            <div class="icon icon-paste"></div>
+                        </button>
+                        <button type="button" class="btn btn-default" id="fm-btn-duplicate" data-toggle="tooltip" data-translate-title="duplicateTitle" data-placement="bottom" value="duplicate">
+                            <div class="icon icon-duplicate"></div>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" id="fm-btn-delete" data-toggle="tooltip" data-translate-title="deleteTitle" data-placement="bottom" value="Delete">
+                            <div class="icon icon-delete"></div>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" id="fm-btn-rename" data-toggle="tooltip" data-translate-title="renameTitle" data-placement="bottom" value="Rename">
+                            <div class="icon icon-rename"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
-        <td class="col-xs-12 col-sm-12 col-md-3 col-lg-3 fm-left">
+        <td class="col-xs-6 col-sm-6 col-md-3 col-lg-3 fm-left">
             <ul class="fm-tree-directory">
                 <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree">-</span><label class="fm-dirname" data-translate-text="root"></label></li>
             </ul>
         </td>
-        <td class="col-xs-12 col-sm-12 col-md-9 col-lg-9 fm-right">
+        <td class="col-xs-6 col-sm-6 col-md-9 col-lg-9 fm-right">
             <ul class="fm-files"></ul>
         </td>
     </tr>
@@ -161,7 +159,7 @@
 </div>
 <script type="text/javascript">
 
-    var copies, cuts, paste;
+    var copies= {}, cuts= {}, paste= {};
 
     function ExtendTree(node, data) {
         $(node).children('ul').remove();
@@ -184,9 +182,9 @@
             return;
         var items = $.parseJSON(data);
         $.each(items, function (index, value) {
-            $('.fm-files').append('<li class="fm-filenode" data-value="' + value.Address + '" data-size="' + value.FileSize + '" data-date="' + value.DateCreated + '" data-ext="' + value.Extension + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/UNKNOWN.png\'" width="56" /><p class="fm-filename">' + value.Title + '</p></li>');
+            $('.fm-files').append('<li class="fm-filenode ui-widget-content" data-value="' + value.Address + '" data-size="' + value.FileSize + '" data-date="' + value.DateCreated + '" data-ext="' + value.Extension + '"><img src="/Content/filemanager/' + value.Extension + '.png" alt="alternative image" onerror="this.src=\'/Content/filemanager/UNKNOWN.png\'" width="56" /><p class="fm-filename">' + value.Title + '</p></li>');
         });
-        $('.fm-filenode').draggable({ revert: 'invalid', handle: 'img', zIndex: 1000 });
+        //$('.fm-filenode').draggable({ revert: 'invalid', handle: 'img', zIndex: 1000 });
     }
 
     function clearAttributes() {
@@ -205,6 +203,35 @@
     function unmask(selector) {
         $('[data-elem="' + selector + '"]').remove();
     }
+    
+    function loadData(elem) {
+        var folders;
+        $.ajax({
+            url: '/FilemanagerHandler.ashx',
+            data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
+            success: function (data, textStatus, jqXHR) {
+                folders = data;
+                ExtendTree(elem, data);
+                $('.fm-tree-selected').removeClass('fm-tree-selected');
+                $(elem).toggleClass('fm-tree-selected');
+            },
+            complete: function () {
+                $.ajax({
+                    url: '/FilemanagerHandler.ashx',
+                    data: 'opName=getFiles&dir=/' + elem.attr('data-value'),
+                    success: function (data, textStatus, jqXHR) {
+                        ShowFiles(folders);
+                        ShowFiles(data, false);
+                        //ShowFiles(data);
+                    },
+                    complete: function () {
+                        unmask('.fm-right');
+                    }
+                });
+            }
+        });
+        paste = '/' + elem.attr('data-value');
+    }
 
     $(document).ready(function () {
         loadData($('.fm-tree-directory li:first'));
@@ -213,39 +240,9 @@
             var selectedItem = $(this).parent('li');
             if (selectedItem.attr('data-value') == undefined)
                 return;
-            var folders;
             maskLoad('.fm-right');
             loadData(selectedItem);
         });
-
-        function loadData(elem) {
-            var folders;
-            $.ajax({
-                url: '/FilemanagerHandler.ashx',
-                data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
-                success: function (data, textStatus, jqXHR) {
-                    folders = data;
-                    ExtendTree(elem, data);
-                    $('.fm-tree-selected').removeClass('fm-tree-selected');
-                    $(elem).toggleClass('fm-tree-selected');
-                },
-                complete: function () {
-                    $.ajax({
-                        url: '/FilemanagerHandler.ashx',
-                        data: 'opName=getFiles&dir=/' + elem.attr('data-value'),
-                        success: function (data, textStatus, jqXHR) {
-                            ShowFiles(folders);
-                            ShowFiles(data, false);
-                            //ShowFiles(data);
-                        },
-                        complete: function () {
-                            unmask('.fm-right');
-                        }
-                    });
-                }
-            });
-            paste = '/' + elem.attr('data-value');
-        }
 
         $('.fm-tree-directory').on('click', '.fm-toggle-subtree', function () {
             clearAttributes();
@@ -254,11 +251,16 @@
             }
             else { $(this).parent('li').children('.fm-subtree').slideToggle(); }
         });
+        $('.fm-files').selectable({ cancel: ".ui-selected" });
         $('[data-translate-title]').each(function (index, value) { $(value).attr('title', (Lang[$(value).attr('data-translate-title')])); });
         $('[data-translate-text]').each(function (index, value) { $(value).text(Lang[$(value).attr('data-translate-text')]); });
         $('[data-translate-value]').each(function (index, value) { $(value).val(Lang[$(value).attr('data-translate-value')]); });
-        
+
         $('button').tooltip();
+        $('.fm-btngroup-open>button').prop('disabled', true);
+        $('.fm-btngroup-edit>button').prop('disabled', true);
+        $('#fm-btn-rename').prop('disabled', true);
+        $('#fm-btn-delete').prop('disabled', true);
     });
 
     function getFileSize(fileSize) {
@@ -270,9 +272,8 @@
             return (fileSize / 131072).toFixed(2) + "MB";
     }
 
-    function SelectFile(obj) {
-        $('.fm-selected').removeClass('fm-selected');
-        $(obj).toggleClass('fm-selected');
+    function ShowFileAttrib() {
+        var obj = $('.fm-files').find('li.ui-selected');
         $('.fm-attr-address').text($(obj).attr('data-value'));
         $('.fm-attr-size').text(getFileSize($(obj).attr('data-size')));
         var createdDateObj = new Date($(obj).attr('data-date'));
@@ -280,15 +281,59 @@
         if ($(obj).attr('data-ext').toLowerCase() == 'folder')
             paste = $(obj).attr('data-value');
     }
+    
+    function ShowFilesAttrib() {
+        var obj = $('.fm-files').find('li.ui-selected');
+        $('.fm-attr-address').text('');
+        var si = 0;
+        $('.fm-files>li.ui-selected').each(function (index, value) { si += parseInt($(value).attr('data-size')); });
+        $('.fm-attr-size').text(getFileSize(si));
+        $('.fm-attr-creationDate').text('-');
+        if ($(obj).attr('data-ext').toLowerCase() == 'folder')
+            paste = $(obj).attr('data-value');
+    }
+    
+    function Reload() {
+        maskLoad('.fm-right');
+        loadData($('.fm-tree-selected'));
+    }
 
-    $('.fm-files').on('mousedown', '.fm-filenode', function (event) {
-        SelectFile(this);
-        switch (event.which) {
-            case 1:
-                break;
-            case 3:
-                //show context menu
-                break;
+    //$('.fm-files').on('mousedown', '.fm-filenode', function (event) {
+    //    //SelectFile(this);
+    //    switch (event.which) {
+    //        case 1:
+    //            break;
+    //        case 3:
+    //            //show context menu
+    //            break;
+    //    }
+    //});
+
+    $(".fm-files").on("selectablestop", function (event, ui) {
+        var selectedNumber = $('.fm-files').find('li.ui-selected').length;
+        if (selectedNumber == 0) {
+            $('.fm-btngroup-open>button').prop('disabled',true);
+            $('.fm-btngroup-edit>button').prop('disabled', true);
+            $('#fm-btn-rename').prop('disabled', true);
+            $('#fm-btn-delete').prop('disabled', true);
+            $('#fm-btn-paste').prop('disabled', copies.length == 0 && cuts.length == 0);
+            clearAttributes();
+        }
+        else if (selectedNumber == 1) {
+            $('.fm-btngroup-open>button').prop('disabled', false);
+            $('.fm-btngroup-edit>button').prop('disabled', false);
+            $('#fm-btn-rename').prop('disabled', false);
+            $('#fm-btn-delete').prop('disabled', false);
+            $('#fm-btn-paste').prop('disabled', copies.length==0 && cuts.length==0);
+            ShowFileAttrib();
+        }
+        else if (selectedNumber > 1) {
+            $('.fm-btngroup-open>button').prop('disabled', true);
+            $('.fm-btngroup-edit>button').prop('disabled', true);
+            $('#fm-btn-rename').prop('disabled', true);
+            $('#fm-btn-delete').prop('disabled', false);
+            $('#fm-btn-paste').prop('disabled', copies.length == 0 && cuts.length == 0);
+            ShowFilesAttrib();
         }
     });
 
@@ -318,52 +363,75 @@
     });
 
     $('#fm-btn-openFile').click(function () {
-        window.open($('.fm-selected').attr('data-value'));
+        window.open($('.fm-files').find('li.ui-selected').attr('data-value'));
     });
 
     $('#fm-btn-download').click(function () {
-        window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-selected').attr('data-value'));
+        window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-files').find('li.ui-selected').attr('data-value'));
     });
 
     $('#fm-btn-copy').click(function () {
-        copy($('.fm-selected'));
+        copy($('.fm-files').find('li.ui-selected'));
     });
 
     $('#fm-btn-cut').click(function () {
-        cut($('.fm-selected'));
+        cut($('.fm-files').find('li.ui-selected'));
     });
 
     $('#fm-btn-paste').click(function () {
-        copies.each(function () {
-            $.ajax({
-                url: '/FilemanagerHandler.ashx',
-                data: 'opName=copy&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+        if (copies.length > 0) {
+            copies.each(function() {
+                $.ajax({
+                    url: '/FilemanagerHandler.ashx',
+                    data: 'opName=copy&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+                });
             });
-        });
-
-        cuts.each(function () {
-            $.ajax({
-                url: '/FilemanagerHandler.ashx',
-                data: 'opName=cut&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+            maskLoad('.fm-right');
+            loadData($('.fm-tree-selected'));
+        }
+        else if (cuts.length > 0) {
+            cuts.each(function() {
+                $.ajax({
+                    url: '/FilemanagerHandler.ashx',
+                    data: 'opName=cut&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+                });
             });
-        });
+            maskLoad('.fm-right');
+            loadData($('.fm-tree-selected'));
+        }
     });
 
     $('#fm-btn-delete').click(function () {
-        $.ajax({
-            url: '/FilemanagerHandler.ashx',
-            data: 'opName=delete&dir=' + $('.fm-selected').attr('data-value'),
+        $('.fm-files').find('li.ui-selected').each(function(index,value) {
+            $.ajax({
+                url: '/FilemanagerHandler.ashx',
+                data: 'opName=delete&dir=' + $(value).attr('data-value'),
+                complete: function() {
+                    maskLoad('.fm-right');
+                    loadData($('.fm-tree-selected'));
+                }
+            });
         });
+        maskLoad('.fm-right');
+        loadData($('.fm-tree-selected'));
     });
 
     $('#fm-btn-rename').click(function () {
-        var obj = $('.fm-selected').append('<textarea class="fm-txt-rename form-control" type="text" onBlur="renameOnBlur(this)" >' + $('.fm-selected>.fm-filename').text() + '</textarea>');
-        $('.fm-selected>.fm-filename').hide();
-        $('.fm-selected>textarea').focus();
-        $('.fm-selected>textarea').select();
+        var obj = $('.fm-files').find('li.ui-selected').append('<textarea class="fm-txt-rename form-control" type="text" >'+ $('.fm-files>li.ui-selected>.fm-filename').text() + '</textarea>');
+        $('.fm-files>li.ui-selected>.fm-filename').hide();
+        $('.fm-files>li.ui-selected>textarea').focus();
+        $('.fm-files>li.ui-selected>textarea').select();
+        $('.fm-txt-rename').blur(function () {
+            renameFile(this);
+        });
+        $('.fm-txt-rename').keypress(function (e) {
+            if (e.which == 13) {
+                renameFile(this);
+            }
+        });
     });
-
-    function renameOnBlur(obj) {
+    
+    function renameFile(obj) {
         var rename = $(obj).val();
         $(obj).hide();
         $.ajax({
@@ -380,7 +448,11 @@
     $('#fm-btn-duplicate').click(function () {
         $.ajax({
             url: '/FilemanagerHandler.ashx',
-            data: 'opName=copy&dir1=' + $('.fm-tree-selected').attr('data-value') + '&dir2=' + $('.fm-selected').attr('data-value'),
+            data: 'opName=copy&dir1=' + $('.fm-tree-selected').attr('data-value') + '&dir2=' + $('.fm-files').find('li.ui-selected').attr('data-value'),
+            complete: function () {
+                maskLoad('.fm-right');
+                loadData($('.fm-tree-selected'));
+            }
         });
     });
 
@@ -388,6 +460,7 @@
         $('.fm-copy').removeClass('fm-copy');
         $('.fm-cut').removeClass('fm-cut');
         $(obj).addClass('fm-copy');
+        cuts = {};
         copies = $(obj);
     }
 
@@ -395,6 +468,7 @@
         $('.fm-copy').removeClass('fm-copy');
         $('.fm-cut').removeClass('fm-cut');
         $(obj).addClass('fm-cut');
+        copies = {};
         cuts = $(obj);
     }
 </script>

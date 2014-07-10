@@ -9,10 +9,12 @@
 .fm-files { max-height: 400px; overflow-y: auto; list-style: none; height: 400px; }
 .fm-filenode { margin: 5px; max-width: 75px; float: left; text-align: center; padding-top: 10px; }
 .fm-filename { font-size: smaller; text-overflow: ellipsis; overflow: hidden; }
-.fm-selected { background-color: lightskyblue; font-style: oblique; overflow-wrap: break-word; padding: 5px; }
+.ui-widget-content { border: none; background: none; }
+.ui-selecting { background: lightsteelblue; }
+.ui-selected { background-color: lightskyblue; font-style: oblique; overflow-wrap: break-word; padding: 5px; }
 .fm-mask { background: url(/Content/filemanager/gif-load.gif) grey no-repeat center center; text-align: center; vertical-align: middle; position: absolute; z-index: 100; margin: 0; padding: 0; opacity: 0.6; }
-.fm-topmenu { background: -webkit-linear-gradient(gray, white); background: -o-linear-gradient(gray, white); background: -moz-linear-gradient(gray, white); background: linear-gradient(gray, white); }
-.fm-statusbar { background: -webkit-linear-gradient(gray, white); background: -o-linear-gradient(gray, white); background: -moz-linear-gradient(gray, white); background: linear-gradient(gray, white); }
+.fm-topmenu { background: #cccccc; }
+.fm-statusbar { background: #cccccc; }
 .fm-icon-minifolder { background: url(/Content/filemanager/mini-folder.png) no-repeat; width: 24px; height: 24px; }
-.fm-dirnode:hover { background-color: lightskyblue; }
-.fm-tree-selected { background-color: lightslategray; }
+.fm-tree-selected>.fm-dirname{ background-color: lightskyblue;}
+.fm-dirnode:hover > .fm-dirname:last-child{ background-color: lightsteelblue;}
