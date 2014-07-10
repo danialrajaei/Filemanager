@@ -3,7 +3,7 @@
 <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fm-table">
     <tr class="fm-topmenu">
         <td class="fm-menu" colspan="2">
-            <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-3 col-lg-offset-3">
+            <div class="col-xs-offset-6 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
                 <div class="btn-toolbar">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default" id="fm-btn-upload" data-toggle="tooltip" data-translate-title="uploadTitle" data-placement="bottom">
@@ -55,7 +55,7 @@
     <tr>
         <td class="col-xs-6 col-sm-6 col-md-3 col-lg-3 fm-left">
             <ul class="fm-tree-directory">
-                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree">-</span><label class="fm-dirname" data-translate-text="root"></label></li>
+                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree"></span><label class="fm-dirname" data-translate-text="root"></label></li>
             </ul>
         </td>
         <td class="col-xs-6 col-sm-6 col-md-9 col-lg-9 fm-right">
@@ -64,7 +64,7 @@
     </tr>
     <tr class="fm-statusbar">
         <td class="fm-attributes" colspan="2">
-            <table>
+            <table class="fm-statusbar-content">
                 <tr>
                     <td data-translate-text="fullAddress"></td>
                     <td>"<span class="fm-attr-address"></span>"</td>
@@ -345,9 +345,13 @@
     }
 
     $('.fm-files').on('dblclick', '.fm-filenode', function (event) {
-        var funcNum = getUrlParam('CKEditorFuncNum');
-        window.opener.CKEDITOR.tools.callFunction(funcNum, $(this).attr('data-value'));
-        window.close();
+        if ($(this).attr('data-ext') == "folder") {
+            $('.fm-dirnode[data-value="' + $(this).attr('data-value') + '"]>.fm-toggle-subtree').click();
+        } else {
+            var funcNum = getUrlParam('CKEditorFuncNum');
+            window.opener.CKEDITOR.tools.callFunction(funcNum, "/" + $(this).attr('data-value'));
+            window.close();
+        }
     });
 
     $('#fm-btn-upload').click(function () {
