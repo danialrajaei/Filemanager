@@ -81,14 +81,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
+            <form action="/FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
                     <h4 class="modal-title" data-translate-text="uploadFile"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="uplaodFile" />
-                    <input type="hidden" name="dir" value="/" />
+                    <input type="hidden" name="dir" value='<%= this.RootPath %>' />
                     <p>
                         <input type="file" name="fileUpload" />
                     </p>
@@ -99,22 +99,20 @@
             </form>
             <form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 <div class="modal fade" id="newFolderModal">
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
+            <form action="/FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
                     <h4 class="modal-title" data-translate-text="addNewFolder"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="addFolder" />
-                    <input type="hidden" name="dir" value="/" />
+                    <input type="hidden" name="dir" value='<%= this.RootPath %>' />
                     <p data-translate-text="promptFolderName"></p>
                     <p>
                         <input type="text" name="folderName" class="form-control" />
@@ -126,22 +124,20 @@
             </form>
             <form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 <div class="modal fade" id="newFileModal">
     <div class="modal-dialog">
         <div class="modal-content">
             </form>
-            <form action="FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
+            <form action="/FilemanagerHandler.ashx" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" data-translate-text="close"></span></button>
                     <h4 class="modal-title" data-translate-text="addNewFile"></h4>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="opName" value="addFile" />
-                    <input type="hidden" name="dir" value="/" />
+                    <input type="hidden" name="dir" value='<%= this.RootPath %>' />
                     <p data-translate-text="promptFileName"></p>
                     <p>
                         <input type="text" name="fileName" class="form-control" />
@@ -153,9 +149,7 @@
             </form>
             <form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
 
@@ -207,7 +201,7 @@
     function loadData(elem) {
         var folders;
         $.ajax({
-            url: '/admin/FilemanagerHandler.ashx',
+            url: '/FilemanagerHandler.ashx',
             data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
             success: function (data, textStatus, jqXHR) {
                 folders = data;
@@ -217,7 +211,7 @@
             },
             complete: function () {
                 $.ajax({
-                    url: '/admin/FilemanagerHandler.ashx',
+                    url: '/FilemanagerHandler.ashx',
                     data: 'opName=getFiles&dir=/' + elem.attr('data-value'),
                     success: function (data, textStatus, jqXHR) {
                         ShowFiles(folders);
@@ -371,7 +365,7 @@
     });
 
     $('#fm-btn-download').click(function () {
-        window.open('/admin/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-files').find('li.ui-selected').attr('data-value'));
+        window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-files').find('li.ui-selected').attr('data-value'));
     });
 
     $('#fm-btn-copy').click(function () {
@@ -386,7 +380,7 @@
         if (copies.length > 0) {
             copies.each(function () {
                 $.ajax({
-                    url: '/admin/FilemanagerHandler.ashx',
+                    url: '/FilemanagerHandler.ashx',
                     data: 'opName=copy&dir1=/' + paste + '&dir2=/' + $(this).attr('data-value'),
                 });
             });
@@ -396,7 +390,7 @@
         else if (cuts.length > 0) {
             cuts.each(function () {
                 $.ajax({
-                    url: '/admin/FilemanagerHandler.ashx',
+                    url: '/FilemanagerHandler.ashx',
                     data: 'opName=cut&dir1=/' + paste + '&dir2=/' + $(this).attr('data-value'),
                 });
             });
@@ -408,7 +402,7 @@
     $('#fm-btn-delete').click(function () {
         $('.fm-files').find('li.ui-selected').each(function (index, value) {
             $.ajax({
-                url: '/admin/FilemanagerHandler.ashx',
+                url: '/FilemanagerHandler.ashx',
                 data: 'opName=delete&dir=/' + $(value).attr('data-value'),
                 complete: function () {
                     maskLoad('.fm-right');
@@ -439,7 +433,7 @@
         var rename = $(obj).val();
         $(obj).hide();
         $.ajax({
-            url: '/admin/FilemanagerHandler.ashx',
+            url: '/FilemanagerHandler.ashx',
             data: 'opName=rename&dir=/' + $(obj).parent('.fm-filenode').attr('data-value') + '&name=' + rename,
             success: function (data) {
                 var item = $.parseJSON(data)[0];
@@ -451,7 +445,7 @@
 
     $('#fm-btn-duplicate').click(function () {
         $.ajax({
-            url: '/admin/FilemanagerHandler.ashx',
+            url: '/FilemanagerHandler.ashx',
             data: 'opName=copy&dir1=/' + $('.fm-tree-selected').attr('data-value') + '&dir2=/' + $('.fm-files').find('li.ui-selected').attr('data-value'),
             complete: function () {
                 maskLoad('.fm-right');

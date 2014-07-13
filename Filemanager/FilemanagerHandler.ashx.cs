@@ -61,7 +61,8 @@ namespace Filemanager
                         dir = context.Request.Params["dir"];
                         var filename = context.Request.Params["fileName"].ToString();
                         filename = string.IsNullOrEmpty(Path.GetExtension(filename)) ? filename + ".txt" : filename;
-                        File.CreateText(context.Server.MapPath(Path.Combine(dir, filename)));
+                        StreamWriter streamWriter = File.CreateText(context.Server.MapPath(Path.Combine(dir, filename)));
+                        streamWriter.Close();
                         break;
                     case "dlFile":
                         dir = context.Request.Params["dir"];
