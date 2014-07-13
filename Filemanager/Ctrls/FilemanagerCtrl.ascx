@@ -159,7 +159,7 @@
 </div>
 <script type="text/javascript">
 
-    var copies= {}, cuts= {}, paste= {};
+    var copies = {}, cuts = {}, paste = {};
 
     function ExtendTree(node, data) {
         $(node).children('ul').remove();
@@ -203,11 +203,11 @@
     function unmask(selector) {
         $('[data-elem="' + selector + '"]').remove();
     }
-    
+
     function loadData(elem) {
         var folders;
         $.ajax({
-            url: '/FilemanagerHandler.ashx',
+            url: '/admin/FilemanagerHandler.ashx',
             data: 'opName=getDirs&dir=/' + elem.attr('data-value'),
             success: function (data, textStatus, jqXHR) {
                 folders = data;
@@ -217,7 +217,7 @@
             },
             complete: function () {
                 $.ajax({
-                    url: '/FilemanagerHandler.ashx',
+                    url: '/admin/FilemanagerHandler.ashx',
                     data: 'opName=getFiles&dir=/' + elem.attr('data-value'),
                     success: function (data, textStatus, jqXHR) {
                         ShowFiles(folders);
@@ -281,7 +281,7 @@
         if ($(obj).attr('data-ext').toLowerCase() == 'folder')
             paste = $(obj).attr('data-value');
     }
-    
+
     function ShowFilesAttrib() {
         var obj = $('.fm-files').find('li.ui-selected');
         $('.fm-attr-address').text('');
@@ -292,7 +292,7 @@
         if ($(obj).attr('data-ext').toLowerCase() == 'folder')
             paste = $(obj).attr('data-value');
     }
-    
+
     function Reload() {
         maskLoad('.fm-right');
         loadData($('.fm-tree-selected'));
@@ -312,7 +312,7 @@
     $(".fm-files").on("selectablestop", function (event, ui) {
         var selectedNumber = $('.fm-files').find('li.ui-selected').length;
         if (selectedNumber == 0) {
-            $('.fm-btngroup-open>button').prop('disabled',true);
+            $('.fm-btngroup-open>button').prop('disabled', true);
             $('.fm-btngroup-edit>button').prop('disabled', true);
             $('#fm-btn-rename').prop('disabled', true);
             $('#fm-btn-delete').prop('disabled', true);
@@ -324,7 +324,7 @@
             $('.fm-btngroup-edit>button').prop('disabled', false);
             $('#fm-btn-rename').prop('disabled', false);
             $('#fm-btn-delete').prop('disabled', false);
-            $('#fm-btn-paste').prop('disabled', copies.length==0 && cuts.length==0);
+            $('#fm-btn-paste').prop('disabled', copies.length == 0 && cuts.length == 0);
             ShowFileAttrib();
         }
         else if (selectedNumber > 1) {
@@ -367,11 +367,11 @@
     });
 
     $('#fm-btn-openFile').click(function () {
-        window.open($('.fm-files').find('li.ui-selected').attr('data-value'));
+        window.open("/" + $('.fm-files').find('li.ui-selected').attr('data-value'));
     });
 
     $('#fm-btn-download').click(function () {
-        window.open('/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-files').find('li.ui-selected').attr('data-value'));
+        window.open('/admin/FilemanagerHandler.ashx?opName=dlFile&dir=' + $('.fm-files').find('li.ui-selected').attr('data-value'));
     });
 
     $('#fm-btn-copy').click(function () {
@@ -384,20 +384,20 @@
 
     $('#fm-btn-paste').click(function () {
         if (copies.length > 0) {
-            copies.each(function() {
+            copies.each(function () {
                 $.ajax({
-                    url: '/FilemanagerHandler.ashx',
-                    data: 'opName=copy&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+                    url: '/admin/FilemanagerHandler.ashx',
+                    data: 'opName=copy&dir1=/' + paste + '&dir2=/' + $(this).attr('data-value'),
                 });
             });
             maskLoad('.fm-right');
             loadData($('.fm-tree-selected'));
         }
         else if (cuts.length > 0) {
-            cuts.each(function() {
+            cuts.each(function () {
                 $.ajax({
-                    url: '/FilemanagerHandler.ashx',
-                    data: 'opName=cut&dir1=' + paste + '&dir2=/' + $(this).attr('data-value'),
+                    url: '/admin/FilemanagerHandler.ashx',
+                    data: 'opName=cut&dir1=/' + paste + '&dir2=/' + $(this).attr('data-value'),
                 });
             });
             maskLoad('.fm-right');
@@ -406,11 +406,11 @@
     });
 
     $('#fm-btn-delete').click(function () {
-        $('.fm-files').find('li.ui-selected').each(function(index,value) {
+        $('.fm-files').find('li.ui-selected').each(function (index, value) {
             $.ajax({
-                url: '/FilemanagerHandler.ashx',
-                data: 'opName=delete&dir=' + $(value).attr('data-value'),
-                complete: function() {
+                url: '/admin/FilemanagerHandler.ashx',
+                data: 'opName=delete&dir=/' + $(value).attr('data-value'),
+                complete: function () {
                     maskLoad('.fm-right');
                     loadData($('.fm-tree-selected'));
                 }
@@ -421,7 +421,7 @@
     });
 
     $('#fm-btn-rename').click(function () {
-        var obj = $('.fm-files').find('li.ui-selected').append('<textarea class="fm-txt-rename form-control" type="text" >'+ $('.fm-files>li.ui-selected>.fm-filename').text() + '</textarea>');
+        var obj = $('.fm-files').find('li.ui-selected').append('<textarea class="fm-txt-rename form-control" type="text" >' + $('.fm-files>li.ui-selected>.fm-filename').text() + '</textarea>');
         $('.fm-files>li.ui-selected>.fm-filename').hide();
         $('.fm-files>li.ui-selected>textarea').focus();
         $('.fm-files>li.ui-selected>textarea').select();
@@ -434,13 +434,13 @@
             }
         });
     });
-    
+
     function renameFile(obj) {
         var rename = $(obj).val();
         $(obj).hide();
         $.ajax({
-            url: '/FilemanagerHandler.ashx',
-            data: 'opName=rename&dir=' + $(obj).parent('.fm-filenode').attr('data-value') + '&name=' + rename,
+            url: '/admin/FilemanagerHandler.ashx',
+            data: 'opName=rename&dir=/' + $(obj).parent('.fm-filenode').attr('data-value') + '&name=' + rename,
             success: function (data) {
                 var item = $.parseJSON(data)[0];
                 $(obj).prev('p').text(item.Title).show().parent('.fm-filenode').attr('data-value', item.Address).attr('data-ext', item.Extension).attr('data-date', item.CreatedDate);
@@ -451,8 +451,8 @@
 
     $('#fm-btn-duplicate').click(function () {
         $.ajax({
-            url: '/FilemanagerHandler.ashx',
-            data: 'opName=copy&dir1=' + $('.fm-tree-selected').attr('data-value') + '&dir2=' + $('.fm-files').find('li.ui-selected').attr('data-value'),
+            url: '/admin/FilemanagerHandler.ashx',
+            data: 'opName=copy&dir1=/' + $('.fm-tree-selected').attr('data-value') + '&dir2=/' + $('.fm-files').find('li.ui-selected').attr('data-value'),
             complete: function () {
                 maskLoad('.fm-right');
                 loadData($('.fm-tree-selected'));

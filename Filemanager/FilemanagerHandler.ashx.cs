@@ -47,7 +47,7 @@ namespace Filemanager
                             i = 1;
                             while (File.Exists(address))
                             {
-                                address = context.Server.MapPath(Path.Combine(dir, Path.GetFileNameWithoutExtension(fileName) + " (" + i + ")" + Path.GetExtension(fileName)));
+                                address = context.Server.MapPath(Path.Combine(dir, Path.GetFileNameWithoutExtension(fileName) + " (" + i++ + ")" + Path.GetExtension(fileName)));
                             }
                             file.SaveAs(address);
                         }
@@ -59,8 +59,8 @@ namespace Filemanager
                         break;
                     case "addFile":
                         dir = context.Request.Params["dir"];
-                        var filename =context.Request.Params["fileName"].ToString();
-                        filename = string.IsNullOrEmpty(Path.GetExtension(filename))? filename+".txt": filename;
+                        var filename = context.Request.Params["fileName"].ToString();
+                        filename = string.IsNullOrEmpty(Path.GetExtension(filename)) ? filename + ".txt" : filename;
                         File.CreateText(context.Server.MapPath(Path.Combine(dir, filename)));
                         break;
                     case "dlFile":
@@ -76,13 +76,13 @@ namespace Filemanager
                         var dir2 = context.Request.Params["dir2"];
                         var addressTocopy = context.Server.MapPath(Path.Combine(dir1, Path.GetFileName(dir2)));
                         i = 1;
-                            while (File.Exists(addressTocopy))
-                            {
-                                addressTocopy =
-                                    context.Server.MapPath(Path.Combine(dir1,
-                                                                        Path.GetFileNameWithoutExtension(dir2) + " (" +
-                                                                        i + ")" + Path.GetExtension(dir2)));
-                            }
+                        while (File.Exists(addressTocopy))
+                        {
+                            addressTocopy =
+                                context.Server.MapPath(Path.Combine(dir1,
+                                                                    Path.GetFileNameWithoutExtension(dir2) + " (" +
+                                                                    i + ")" + Path.GetExtension(dir2)));
+                        }
                         File.Copy(context.Server.MapPath(dir2), addressTocopy);
                         break;
                     case "cut":
@@ -90,13 +90,13 @@ namespace Filemanager
                         dir2 = context.Request.Params["dir2"];
                         addressTocopy = context.Server.MapPath(Path.Combine(dir1, Path.GetFileName(dir2)));
                         i = 1;
-                            while (File.Exists(addressTocopy))
-                            {
-                                addressTocopy =
-                                    context.Server.MapPath(Path.Combine(dir1,
-                                                                        Path.GetFileNameWithoutExtension(dir2) + " (" +
-                                                                        i + ")" + Path.GetExtension(dir2)));
-                            }
+                        while (File.Exists(addressTocopy))
+                        {
+                            addressTocopy =
+                                context.Server.MapPath(Path.Combine(dir1,
+                                                                    Path.GetFileNameWithoutExtension(dir2) + " (" +
+                                                                    i + ")" + Path.GetExtension(dir2)));
+                        }
                         File.Move(context.Server.MapPath(dir2), addressTocopy);
                         break;
                     case "delete":
