@@ -48,6 +48,12 @@
                             <div class="icon icon-rename"></div>
                         </button>
                     </div>
+                    <div class="input-group input-group-sm pull-right">
+                        <input type="text" class="form-control" id="txtSearch">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btnSearch"><span class="glyphicon glyphicon-search"></span>&nbsp</button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </td>
@@ -55,7 +61,9 @@
     <tr>
         <td class="col-xs-6 col-sm-6 col-md-3 col-lg-3 fm-left">
             <ul class="fm-tree-directory">
-                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree"></span><label class="fm-dirname" data-translate-text="root"></label></li>
+                <li class="fm-dirname" data-value="<%= this.RootPath %>"><span class="fm-toggle-subtree"></span>
+                    <label class="fm-dirname" data-translate-text="root"></label>
+                </li>
             </ul>
         </td>
         <td class="col-xs-6 col-sm-6 col-md-9 col-lg-9 fm-right">
@@ -225,6 +233,7 @@
             }
         });
         paste = '/' + elem.attr('data-value');
+        $('[name=dir]').val('/' + elem.attr('data-value'));
     }
 
     $(document).ready(function () {
@@ -397,6 +406,11 @@
             maskLoad('.fm-right');
             loadData($('.fm-tree-selected'));
         }
+    });
+
+    $('#btnSearch').click(function () {
+        $('.fm-files>li').hide();
+        $('.fm-files>li>p:contains("' + $('#txtSearch').val() + '")').parent('li').show();
     });
 
     $('#fm-btn-delete').click(function () {

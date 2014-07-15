@@ -2,20 +2,21 @@
 .fm-table { }
 .fm-left { border: 1px solid gray; padding: 0px; vertical-align: top; overflow-x: auto; }
 .fm-right { border: 1px solid gray; padding: 10px; overflow-x: auto; vertical-align: top; }
-.fm-tree-directory { max-height: 400px; overflow-y: auto; list-style: none; padding: 0; margin: 0; vertical-align: top; width: 100%; }
-.fm-tree-directory li { width: 100%; cursor: pointer; }
+.fm-tree-directory { max-height: 400px; overflow: auto; list-style: none; padding: 0; margin: 0; vertical-align: top; width: 100%; }
+    .fm-tree-directory li { width: 100%; cursor: pointer; }
 .fm-subtree li { list-style: none; min-height: 24px; }
 .fm-dirname { cursor: pointer; width: 80%; padding: 2px 0 0 5px; }
-.fm-files { max-height: 400px; overflow-y: auto; list-style: none; height: 400px; }
-.fm-filenode { margin: 5px; max-width: 75px; float: left; text-align: center; padding-top: 10px; }
-.fm-filename { font-size: smaller; text-overflow: ellipsis; overflow: hidden; }
+.fm-files { max-height: 400px; overflow-y: auto; list-style: none; }
+.fm-filenode { margin: 5px; max-width: 75px; float: left; text-align: center; height:100px; }
+.fm-filename { font-size: smaller; width: 75px; word-wrap: break-word; }
 .ui-widget-content { border: none; background: none; }
 .ui-selecting { background: lightsteelblue; }
-.ui-selected { background-color: lightskyblue; font-style: oblique; overflow-wrap: break-word; padding: 5px; }
+.ui-selected { background-color: lightskyblue; font-style: oblique; overflow-wrap: break-word;}
+.ui-selected>img { padding:5px; }
 .fm-mask { background: url(/Content/filemanager/gif-load.gif) grey no-repeat center center; text-align: center; vertical-align: middle; position: absolute; z-index: 100; margin: 0; padding: 0; opacity: 0.6; }
 .fm-topmenu { background: #cccccc; }
 .fm-statusbar { background: #cccccc; }
 .fm-statusbar-content { margin-left: 25px; }
 .fm-icon-minifolder { background: url(/Content/filemanager/mini-folder.png) no-repeat; width: 24px; height: 24px; }
-.fm-tree-selected>.fm-dirname{ background-color: lightskyblue;}
-.fm-dirnode:hover > .fm-dirname:last-child{ background-color: lightsteelblue;}
+.fm-tree-selected > .fm-dirname { background-color: lightskyblue; }
+.fm-dirnode:hover > .fm-dirname:last-child { background-color: lightsteelblue; }
