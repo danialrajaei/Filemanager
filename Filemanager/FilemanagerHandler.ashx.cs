@@ -39,17 +39,21 @@ namespace Filemanager
                         break;
                     case "uplaodFile":
                         dir = context.Request.Params["dir"];
-                        HttpPostedFile file = context.Request.Files["fileUpload"];
-                        if (file != null && file.ContentLength > 0)
+                        //HttpPostedFile file = context.Request.Files["fileUpload"];
+                        foreach (string key in context.Request.Files.AllKeys)
                         {
-                            string fileName = Path.GetFileName(file.FileName);
-                            string address = context.Server.MapPath(Path.Combine(dir, fileName));
-                            i = 1;
-                            while (File.Exists(address))
+                            HttpPostedFile file = context.Request.Files[key];
+                            if (file != null && file.ContentLength > 0)
                             {
-                                address = context.Server.MapPath(Path.Combine(dir, Path.GetFileNameWithoutExtension(fileName) + " (" + i++ + ")" + Path.GetExtension(fileName)));
+                                string fileName = Path.GetFileName(file.FileName);
+                                string address = context.Server.MapPath(Path.Combine(dir, fileName));
+                                i = 1;
+                                while (File.Exists(address))
+                                {
+                                    address = context.Server.MapPath(Path.Combine(dir, Path.GetFileNameWithoutExtension(fileName) + " (" + i++ + ")" + Path.GetExtension(fileName)));
+                                }
+                                file.SaveAs(address);
                             }
-                            file.SaveAs(address);
                         }
                         break;
                     case "addFolder":

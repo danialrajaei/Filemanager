@@ -21,5 +21,6 @@
             <uc1:FilemanagerCtrl runat="server" ID="FilemanagerCtrl" RootPath="/" />
         </div>
     </form>
+    <script type="text/javascript" src="Scripts/Filemanager.min.js"></script>
 </body>
 </html>

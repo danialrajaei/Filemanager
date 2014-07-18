@@ -194,9 +194,16 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="FilemanagerHandler.ashx" />
     <None Include="Properties\PublishProfiles\Filemanager.pubxml" />
+    <Content Include="Scripts\Filemanager.min.js">
+      <DependentUpon>Filemanager.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Filemanager.min.js.map">
+      <DependentUpon>Filemanager.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Filemanager.js" />
     <Content Include="Scripts\jquery-1.11.1.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
